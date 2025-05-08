@@ -1,0 +1,38 @@
+{
+  "name": "nodejs-crud-api",
+  "version": "0.0.1",
+  "description": "Node.js CRUD API",
+  "private": true,
+  "scripts": {
+    "test": "jest",
+    "test:watch": "jest --watchAll",
+    "build": "tsc -p tsconfig.prod.json",
+    "start:dev": "nodemon",
+    "start:prod": "npm run build && node dist/index.js",
+    "start:multi": "ts-node src/worker.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mrHoft/nodejs-crud-api.git"
+  },
+  "author": "mrHoft",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mrHoft/nodejs-crud-api/issues"
+  },
+  "homepage": "https://github.com/mrHoft/nodejs-crud-api#readme",
+  "devDependencies": {
+    "@types/node": "^22.15.15",
+    "@types/jest": "^29.5.14",
+    "@types/supertest": "^6.0.3",
+    "jest": "^29.7.0",
+    "nodemon": "^3.1.10",
+    "supertest": "^7.1.0",
+    "ts-jest": "^29.3.2"
+  },
+  "dependencies": {
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3",
+    "uuid": "^11.1.0"
+  }
+}
