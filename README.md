@@ -22,6 +22,7 @@ Simple CRUD API using in-memory database underneath.
 - POST `curl --request PUT 'localhost:3000/api/users/<id>' --data '{"username": "Foo","age": 19,"hobbies": ["arts", "driving"]}'`
 - DELETE `curl --request DELETE 'localhost:3000/api/users/<id>'`
 
+
 ## Technical requirements
 
 - Task implemented using Typescript
