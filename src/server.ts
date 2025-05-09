@@ -22,7 +22,9 @@ export const server = createServer(async (req: IncomingMessage, res: ServerRespo
       sendResponse(res, 404, { message: 'Endpoint not found' });
     }
   } catch (err) {
-    sendResponse(res, 500, { message: 'Something went wrong on the server' });
+    const message = err instanceof Error ? err.message : err;
+    console.log(err);
+    sendResponse(res, 500, { message });
   }
 });
 

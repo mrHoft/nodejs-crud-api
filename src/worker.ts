@@ -1,3 +1,4 @@
+import 'dotenv/config';
 import cluster from 'cluster';
 import os from 'os';
 import { request } from 'http';
@@ -8,6 +9,8 @@ const numCPUs = os.cpus().length;
 const workerCount = Math.max(1, numCPUs - 1);
 
 if (cluster.isPrimary) {
+  console.log(`Await for balancer and ${workerCount} its workers:`);
+
   for (let i = 0; i < workerCount; i++) {
     const workerPort = BASE_PORT + 1 + i;
     cluster.fork({ WORKER_PORT: workerPort.toString() });
@@ -27,10 +30,19 @@ if (cluster.isPrimary) {
         headers: req.headers,
       },
       proxyRes => {
-        res.writeHead(proxyRes.statusCode || 500, proxyRes.headers);
+        if (!res.headersSent) {
+          res.writeHead(proxyRes.statusCode || 500, proxyRes.headers);
+        }
         proxyRes.pipe(res, { end: true });
       }
     );
+
+    proxy.on('error', err => {
+      if (!res.headersSent) {
+        res.writeHead(500, { 'Content-Type': 'text/plain' });
+      }
+      res.end(`Proxy error: ${err.message}`);
+    });
 
     req.pipe(proxy, { end: true });
 
