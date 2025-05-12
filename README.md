@@ -13,9 +13,14 @@ Simple CRUD API using in-memory database underneath.
 | `npm run start:dev`   | Run dev server at 3000 port |
 | `npm run start:prod`  | Make a build and run production server at 3000 port |
 | `npm run start:multi` | Run multiple servers at 4000+ ports with the balancer |
-| `npm run lint`        | Linter checks               |
-| `npm run format`      | Prettier format             |
+| `npm run lint`        | Run type checks             |
 | `npm run test`        | Run tests                   |
+
+### Request examples
+- POST `curl 'localhost:3000/api/users' --data '{"username": "User1","age": 21,"hobbies": ["arts"]}'`
+- GET `curl 'localhost:3000/api/users'`
+- POST `curl --request PUT 'localhost:3000/api/users/<id>' --data '{"username": "Foo","age": 19,"hobbies": ["arts", "driving"]}'`
+- DELETE `curl --request DELETE 'localhost:3000/api/users/<id>'`
 
 
 ## Technical requirements
