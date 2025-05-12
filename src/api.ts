@@ -92,5 +92,5 @@ export async function deleteUser(req: IncomingMessage, res: ServerResponse) {
   }
 
   users.splice(userIndex, 1);
-  sendResponse(res, 200, { message: 'User delete successful' });
+  sendResponse(res, 204, { message: 'User delete successful' });
 }
